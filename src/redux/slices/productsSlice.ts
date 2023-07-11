@@ -13,17 +13,23 @@ const initialState: ICar = {
 
 // creating action-reducer slice
 export const ProductSlice = createSlice({
-  name: "products_slide",
-  initialState,
+  name: "products",
+  initialState: {
+    value:0
+  },
   reducers: {
   // manage/control the currIndex value
     changeCurrIndex: (state, action: PayloadAction<number>) => {
-      state.currIndex = action.payload;
+      state.value = action.payload;
     },
+    increment: (state,action)=>{
+      console.log({state,action})
+      state.value += 1 
+    }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { changeCurrIndex } = ProductSlice.actions;
+export const { changeCurrIndex, increment } = ProductSlice.actions;
 
 export default ProductSlice.reducer;

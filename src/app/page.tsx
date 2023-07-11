@@ -2,12 +2,21 @@
 import Image from 'next/image'
 import { Search } from './components/Search'
 import { useSelector, useDispatch } from 'react-redux'
+import { useGetProductsDetailsQuery, useGetSingleProductsQuery } from '@/redux/apis/api';
+import { increment } from '@/redux/slices/productsSlice';
 
 export default function Home() {
-  const data = useSelector((state)=>state.products.value)
-  console.log({data})
+  const data = useSelector((state:any)=>state.products)
+  const dispatch = useDispatch();
+  console.log({data});
+  
+  // const {data}= useGetProductsDetailsQuery();
+  // const {data:todayHotDeals}= useGetSingleProductsQuery('Today’s hot deals');
+  // const {data:hotDeals}= useGetSingleProductsQuery('hot deals for you');
+  // console.log(data,todayHotDeals,hotDeals);
   return (
     <div>
+      <button onClick={()=>dispatch(increment(1))}> CLICK</button>
       <Search />
 
       {/* hot deals section  */}
